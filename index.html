@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Startsida</title>
+</head>
+<body>
+    <header>
+        <h1>Matplanerare</h1>
+        <ul id="meny" class="meny"></ul>
+    </header>
+    <main>
+        <div id="search-container" class="search-container">
+            <input type="text" id="soktext" placeholder="Sök här" aria-label="Sökfält" oninput="SearchFood(this.value)">
+        </div>
+        <div id="mat" class="mat"></div>
+    </main>
+
+
+
+
+    <script src="script/script.js"></script>
+    <script src="script/meny.js"></script>
+</body>
+</html>
