@@ -34,12 +34,27 @@ main {
     cursor: pointer;
 }
 .search-container button:hover {
-    background-color: #005a9e;
+    background-color: rgb(0, 90, 158);
 }
 
+.cardContainer
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+
+}
 .card
 {
+    flex: 1 1 250px;
+    max-width: 250px;
     border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: beige;
+    box-shadow: 10px 10px 50px rgba(0, 90, 158, 0.6);
+
 }
 
 .card h3
@@ -56,3 +71,26 @@ main {
 {
     text-align: left;
 }
+
+.vikt
+{
+    text-align: left;
+}
+
+.slider 
+{
+    margin: 10px;
+}
+
+button 
+{
+    margin: 4px;
+}
+
+button:hover
+{
+    background-color: #0078d7;
+    color: white;
+}
+
+
