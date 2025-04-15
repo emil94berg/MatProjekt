@@ -1,5 +1,10 @@
 let färdig = document.getElementById("färdig")
 let färdigMat = JSON.parse(localStorage.getItem("finishedMeal")) || [];
+let addFood = document.getElementById("addFood")
+const regex = /^(Protein|Fett, totalt|Kolhydrater, tillgängliga|Salt, NaCl)$/i;
+
+
+// let test = JSON.parse(localStorage.getItem(`${food.namn}`)) || [];
 
 
 
@@ -9,7 +14,7 @@ mapFärdig()
 
 function mapFärdig() 
 {
-    const regex = /Protein|Fett|Kolhydrater|Salt/i;
+    
 
     let filteredFood = färdigMat.filter(item => {
         return Array.isArray(item.Näring) && item.Näring.some(näringsämne => regex.test(näringsämne.namn))
@@ -40,6 +45,7 @@ function mapFärdig()
                 let li = document.createElement("li");
                 li.innerHTML = `${n.namn}: ${Math.round(n.varde * portionSize)} ${n.enhet}`;
                 näringsLista.appendChild(li);
+                console.log("Nu är vi här!!!!!" + n.namn)
                 
             }
         })
@@ -59,6 +65,13 @@ function mapFärdig()
 
 
     })
+
+    let addButton = document.createElement("button")
+    addButton.innerHTML = "Lägg till måltid"
+    addButton.onclick = function () {
+        addFärdigMåltid(färdigMat)
+    }
+    färdig.appendChild(addButton)
 }
 
 function TaBortKomponent(food)
@@ -72,4 +85,63 @@ function TaBortKomponent(food)
     färdig.innerHTML = "";
 
     mapFärdig();
+}
+
+function addFärdigMåltid(food)
+{
+    let now = new Date();
+    let timeString = now.toLocaleTimeString();
+    let regexProtein = /^(Protein)$/i;
+    let regexKolhydrater = /^(Kolhydrater, tillgängliga)$/i;
+    let regexSalt = /^(Salt, NaCl)$/i;
+    let regexFett = /^(Fett, totalt)$/i;
+    let totalProtein = sumByRegex(food, regexProtein)
+    let totalKolhydrater = sumByRegex(food, regexKolhydrater)
+    let totalSalt = sumByRegex(food, regexSalt)
+    let totalFett = sumByRegex(food, regexFett)
+    
+    // let proteinString = 0;
+    
+
+    let mealString = now + timeString + ": "
+
+    food.map(function(mat){
+        // let stor = mat.Storlek
+        // mat.Näring.forEach(n => {
+        //     if (regexProtein.test(n.namn)) {
+        //         proteinString += (Math.round(n.varde * (stor/100)))
+        //     }
+        // })
+
+
+        
+        mealString += mat.Namn + " " + mat.Storlek + " g/ml. | "
+    })
+    mealString += " mängd protein: " + totalProtein + " | " + " mängd kolhydrater: " + totalKolhydrater + " | " + " mängd salt: " +
+    totalSalt + " | " + " mängd fett: " + totalFett 
+    console.log(mealString)
+    
+
+    
+}
+
+function sumByRegex(fooditem, regex)
+{
+    let tomtalsum = 0;
+    
+
+    fooditem.map(function(mat){
+        let stor = mat.Storlek;
+        mat.Näring.forEach(n => {
+            if (regex.test(n.namn)) {
+                tomtalsum += (Math.round(n.varde * (stor/100)))
+            }
+        })
+
+    })
+
+    
+
+    return tomtalsum;
+
 }
