@@ -78,6 +78,7 @@ function mapFärdig()
         }
         else
         {
+            window.alert("Måltid tillagd")
             addFärdigMåltid(färdigMat)
         }
         
