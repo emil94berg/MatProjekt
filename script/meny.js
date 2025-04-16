@@ -6,7 +6,8 @@ function byggMeny()
     let links = [
         ["Startsida", "index.html"],
         ["Definera din måltid", "defineraMåltid.html"],
-        ["Måltider", "färdigMåltid.html"]
+        ["Måltider", "färdigMåltid.html"],
+        ["Dina måltider", "dinaMåltider.html"]
     ]
 
     for(i = 0; i < links.length; i++)
